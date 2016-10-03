@@ -1,0 +1,24 @@
+<ion-content padding>
+  <h4 class="login-title">Connexion sécurisée</h4>
+  <ion-list>
+    <ion-item>
+      <ion-label>
+        <ion-icon name="person"></ion-icon>
+      </ion-label>
+      <ion-input type="text" [(ngModel)]="username" placeholder="Votre identifiant"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        <ion-icon name="unlock"></ion-icon>
+      </ion-label>
+      <ion-input type="password" [(ngModel)]="password" placeholder="Votre mot de passe"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <div style="text-align: center;">
+    <button ion-button color="primary" class="center orange" (click)="login(username, password)">CONNEXION</button>
+  </div>
+</ion-content>
+
+

@@ -1,17 +1,29 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
+  <ion-toolbar>
+    <ion-title>Shifteo Sales</ion-title>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-content style="text-align: center;">
+    <ion-icon name="camera" style="font-size: 230px; display: block; margin-top: 160px; color: lightgrey"></ion-icon>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col width-30 style="text-align: center;">
+          <ion-icon name="cog" style="font-size: 42px;" (click)="presentActionSheet()"></ion-icon>
+        </ion-col>
+        <ion-col width-40>
+          <button ion-button class="button button-positive" (click)="presentPopover()">
+            MODE DEGRADÉ
+          </button>
+        </ion-col>
+        <ion-col width-30 style="text-align: center">
+          <ion-icon name="albums" style="font-size: 42px;" (click)="goToHistory()"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

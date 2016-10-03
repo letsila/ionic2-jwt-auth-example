@@ -1,0 +1,28 @@
+<ion-content padding>
+  <h4 style="text-align:center; margin: 10px 0 36px;">Mode dégradé</h4>
+
+  <ion-list>
+    <p>
+      Renseignez un numéro ci dessous selon la procédure établi par votre société ainsi que votre
+      lieu de départ.
+    </p>
+    <ion-item>
+      <ion-input type="text" placeholder="Numéro d'emport" [(ngModel)]="numero"></ion-input>
+    </ion-item>
+
+    <ion-list radio-group [(ngModel)]="pays">
+      <ion-item>
+        <ion-label>France</ion-label>
+        <ion-radio value="france" checked></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Italie</ion-label>
+        <ion-radio value="italie"></ion-radio>
+      </ion-item>
+    </ion-list>
+  </ion-list>
+
+  <div style="text-align: center">
+    <button ion-button color="secondary" class="center orange" (click)="createSession(numero, pays)">VALIDER</button>
+  </div>
+</ion-content>

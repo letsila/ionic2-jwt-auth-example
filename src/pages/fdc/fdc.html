@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col width-33>
+          <ion-icon name="trash" style="font-size: 42px;" (click)="deleteSession()"></ion-icon>
+        </ion-col>
+        <ion-col width-33>
+          <ion-title>Fond de caisse et poste</ion-title>
+        </ion-col>
+        <ion-col offset-33></ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label color="primary">
+        <ion-icon name="euro"></ion-icon>Fond de caisse
+      </ion-label>
+      <ion-input placeholder=""></ion-input>
+    </ion-item>
+
+    <ion-list radio-group [(ngModel)]="poste">
+      <ion-item>
+        <ion-label>Bar</ion-label>
+        <ion-radio value="bar" checked></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Ticketing</ion-label>
+        <ion-radio value="ticketing"></ion-radio>
+      </ion-item>
+    </ion-list>
+  </ion-list>
+</ion-content>
