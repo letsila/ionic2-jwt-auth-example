@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
 
 // Déclaration nécessaire pour rendre la librairie PouchDb
 // lisible par typeScript.

@@ -47,7 +47,7 @@ export class HomePage {
         {
           text: 'Déconnectez vous',
           handler: () => {
-            localStorage.setItem('username', '');
+            localStorage.setItem('user_login', '');
             this.nav.push(LoginPage);
           }
         }, {

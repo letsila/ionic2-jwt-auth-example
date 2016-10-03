@@ -8,41 +8,31 @@ import {HomePage} from '../../pages/home/home';
   templateUrl: 'login.html'
 })
 export class LoginPage {
-  username:string;
-  password:string;
-
-  userList:any[];
+  user_login:string;
+  user_password:string;
 
   constructor
   (private users:Users,
    public nav:NavController,
    public alertCtrl:AlertController) {
 
-    // Souscription à notre Observable.
-    users.getUsers().subscribe(users => {
-      this.userList = users;
-    });
   }
 
   goToHomePage() {
     this.nav.push(HomePage);
   }
 
-  login(username, password) {
+  login(user_login, user_password) {
 
-    // On vérifie si on a bien notre liste d'utilisateur sinon on relance la
-    // requête.
-    if (this.userList.length > 0) {
-
-      // On recherche l'utilisateur dans notre liste d'utilisateur.
-      let theUser = this.userList.filter((user) => {
-        return user.user_login == username && user.user_pwd == password;
-      });
+    console.log('before login');
+    // Connexion serveur.
+    this.users.getUser(user_login, user_password).subscribe(token => {
 
       // Si on retrouve un utilisateur qui concorde on renvoie vers la page d'accueil.
       // sinon on affiche un message d'alerte.
-      if (theUser.length == 1) {
-        localStorage.setItem('username', theUser[0].user_login);
+      if (token) {
+        localStorage.setItem('token', token.token);
+        localStorage.setItem('user_login', user_login);
         this.goToHomePage();
 
       } else {
@@ -53,8 +43,6 @@ export class LoginPage {
         });
         alert.present();
       }
-    } else {
-      this.users.getUsers()
-    }
+    });
   }
 }
