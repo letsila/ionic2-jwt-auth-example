@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {Platform} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
-
 import {HomePage} from '../pages/home/home';
 import {LoginPage} from '../pages/login/login';
 
@@ -16,7 +15,7 @@ export class MyApp {
   constructor(platform:Platform) {
     platform.ready().then(() => {
 
-      if (localStorage.getItem('username') != '' && localStorage.getItem('username')) {
+      if (localStorage.getItem('id_token') != '' && localStorage.getItem('id_token')) {
         this.rootPage = HomePage;
       } else {
         this.rootPage = LoginPage;

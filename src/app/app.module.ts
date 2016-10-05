@@ -8,7 +8,7 @@ import {LoginPage} from '../pages/login/login';
 import {MyPopover} from '../pages/popover/popover';
 import {Db} from '../providers/data/db';
 import {Users} from '../providers/users/users';
-
+import {provideAuth} from 'angular2-jwt';
 
 @NgModule({
   declarations: [
@@ -33,7 +33,15 @@ import {Users} from '../providers/users/users';
   ],
   providers: [
     Db,
-    Users
+    Users,
+    provideAuth({
+      headerName: 'Authorization',
+      headerPrefix: 'bearer',
+      tokenName: 'token',
+      tokenGetter: (() => localStorage.getItem('id_token')),
+      globalHeaders: [{ 'Content-Type': 'application/json' }],
+      noJwtError: true
+    }),
   ]
 })
 export class AppModule {

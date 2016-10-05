@@ -3,19 +3,20 @@ import {PopoverController, ActionSheetController, NavController} from 'ionic-ang
 import {MyPopover} from '../../pages/popover/popover';
 import {LoginPage} from '../../pages/login/login';
 import {HistoryPage} from '../../pages/history/history';
+import {Users} from '../../providers/users/users';
 
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
+  providers: [Users]
 })
 
 export class HomePage {
   constructor
   (public popoverCtrl:PopoverController,
    public actionSheetCtrl:ActionSheetController,
-   public nav:NavController) {
-
-    console.log('home page');
+   public nav:NavController,
+   public users:Users) {
   }
 
   presentPopover():void {
@@ -35,7 +36,9 @@ export class HomePage {
           text: 'MAJ Catalogue Produits',
           role: 'destructive',
           handler: () => {
-            console.log('MAJ catalogue');
+            this.users.sendUserData().then(response => {
+              console.log(response);
+            })
           }
         },
         {

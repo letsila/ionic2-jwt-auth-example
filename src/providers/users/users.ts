@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
-import {Http, Response, Headers} from '@angular/http';
+import {AuthHttp} from 'angular2-jwt';
+import {Response, Http} from '@angular/http';
 import {Observable}     from 'rxjs/Observable';
 import 'rxjs/Rx';
 import 'rxjs/add/operator/map'
@@ -9,14 +10,13 @@ import 'rxjs/add/operator/map'
 
 export class Users {
 
-  // private connexionUrl = 'http://lomaytech.com/shifteo/connexion';
-  // private sendDataUrl = 'http://lomaytech.com/shifteo/send';
+  private connexionUrl = 'http://lomaytech.com/shifteo/connexion';
+  private sendDataUrl = 'http://lomaytech.com/shifteo/send';
 
-  private connexionUrl = 'http://localhost:8000/shifteo/connexion';
-  private sendDataUrl = 'http://localhost:8000/shifteo/send';
+  // private connexionUrl = 'http://localhost:8000/shifteo/connexion';
+  // private sendDataUrl = 'http://localhost:8000/shifteo/send';
 
-  constructor(private http:Http) {
-
+  constructor(public http:Http, public authHttp:AuthHttp) {
   }
 
   /**
@@ -37,13 +37,8 @@ export class Users {
    *
    * @returns {Observable<Response>}
    */
-  sendUserData():Observable<any> {
-    let token = localStorage.getItem('token');
-    let creds = "user_login=" + localStorage.getItem('user_login');
-    var headers = new Headers;
-    headers.append('Authorization', token);
-
-    return this.http.post(this.sendDataUrl, creds, headers);
+  sendUserData():any {
+    return this.authHttp.get(this.sendDataUrl);
   }
 
   /**
