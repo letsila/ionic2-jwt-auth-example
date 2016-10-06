@@ -10,11 +10,11 @@ import 'rxjs/add/operator/map'
 
 export class Users {
 
-  private connexionUrl = 'http://lomaytech.com/shifteo/connexion';
-  private sendDataUrl = 'http://lomaytech.com/shifteo/send';
-
-  // private connexionUrl = 'http://localhost:8000/shifteo/connexion';
-  // private sendDataUrl = 'http://localhost:8000/shifteo/send';
+  // private connexionUrl = 'http://lomaytech.com/shifteo/connexion';
+  // private sendDataUrl = 'http://lomaytech.com/shifteo/send';
+  //
+  private connexionUrl = 'http://localhost:8000/shifteo/connexion';
+  private sendDataUrl = 'http://localhost:8000/shifteo/send';
 
   constructor(
     public http:Http,

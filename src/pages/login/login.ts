@@ -24,6 +24,13 @@ export class LoginPage {
   }
 
   login(user_login, user_password) {
+
+    if (user_login == '' || user_password == '')
+    {
+      this.alertConnexionError();
+      return;
+    }
+
     let loading = this.loadingCtrl.create({
       content: 'Chargement ...'
     });
@@ -42,13 +49,17 @@ export class LoginPage {
         this.goToHomePage();
 
       } else {
-        let alert = this.alertCtrl.create({
-          title: 'Erreur!',
-          subTitle: 'La connexion a échoué. Vérifiez vos identifiants et recommencez.',
-          buttons: ['OK']
-        });
-        alert.present();
+        this.alertConnexionError();
       }
     });
+  }
+
+  alertConnexionError() {
+    let alert = this.alertCtrl.create({
+      title: 'Erreur!',
+      subTitle: 'La connexion a échoué. Vérifiez vos identifiants et recommencez.',
+      buttons: ['OK']
+    });
+    alert.present();
   }
 }

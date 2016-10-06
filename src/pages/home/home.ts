@@ -50,7 +50,7 @@ export class HomePage {
         {
           text: 'Déconnectez vous',
           handler: () => {
-            localStorage.setItem('user_login', '');
+            localStorage.setItem('id_token', '');
             this.nav.push(LoginPage);
           }
         }, {
