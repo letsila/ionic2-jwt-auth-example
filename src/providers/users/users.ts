@@ -16,7 +16,10 @@ export class Users {
   // private connexionUrl = 'http://localhost:8000/shifteo/connexion';
   // private sendDataUrl = 'http://localhost:8000/shifteo/send';
 
-  constructor(public http:Http, public authHttp:AuthHttp) {
+  constructor(
+    public http:Http,
+    public authHttp:AuthHttp,
+  ) {
   }
 
   /**

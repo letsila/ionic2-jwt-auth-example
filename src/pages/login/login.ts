@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {Users} from '../../providers/users/users';
-import {NavController, AlertController} from 'ionic-angular';
+import {NavController, AlertController, LoadingController} from 'ionic-angular';
 import {HomePage} from '../../pages/home/home';
 
 @Component({
@@ -14,7 +14,9 @@ export class LoginPage {
   constructor
   (private users:Users,
    public nav:NavController,
-   public alertCtrl:AlertController) {
+   public alertCtrl:AlertController,
+   public loadingCtrl:LoadingController
+  ) {
 
   }
 
@@ -23,10 +25,15 @@ export class LoginPage {
   }
 
   login(user_login, user_password) {
+    let loading = this.loadingCtrl.create({
+      content: 'Chargement ...'
+    });
 
-    console.log('before login');
+    loading.present();
+
     // Connexion serveur.
     this.users.getUser(user_login, user_password).subscribe(token => {
+      loading.dismiss();
 
       // Si on retrouve un utilisateur qui concorde on renvoie vers la page d'accueil.
       // sinon on affiche un message d'alerte.
