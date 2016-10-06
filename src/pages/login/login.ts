@@ -30,7 +30,7 @@ export class LoginPage {
 
       // Si on retrouve un utilisateur qui concorde on renvoie vers la page d'accueil.
       // sinon on affiche un message d'alerte.
-      if (token) {
+      if (token && token != 'undefined') {
         localStorage.setItem('id_token', token.token);
         localStorage.setItem('user_login', user_login);
         this.goToHomePage();
