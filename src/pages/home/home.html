@@ -1,29 +1,16 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Shifteo Sales</ion-title>
+    <ion-title>Home Page</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content style="text-align: center;">
-    <ion-icon name="camera" style="font-size: 230px; display: block; margin-top: 160px; color: lightgrey"></ion-icon>
 </ion-content>
 
 <ion-footer>
-  <ion-toolbar>
-    <ion-grid>
-      <ion-row>
-        <ion-col width-30 style="text-align: center;">
-          <ion-icon name="cog" style="font-size: 42px;" (click)="presentActionSheet()"></ion-icon>
-        </ion-col>
-        <ion-col width-40>
-          <button ion-button class="button button-positive" (click)="presentPopover()">
-            MODE DEGRADÉ
-          </button>
-        </ion-col>
-        <ion-col width-30 style="text-align: center">
-          <ion-icon name="albums" style="font-size: 42px;" (click)="goToHistory()"></ion-icon>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+  <ion-toolbar style="text-align: center;">
+    <button ion-button class="button button-positive" (click)="presentActionSheet()">
+      MENU
+    </button>
   </ion-toolbar>
 </ion-footer>

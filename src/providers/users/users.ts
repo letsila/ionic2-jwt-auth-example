@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {AuthHttp} from 'angular2-jwt';
-import {Response, Http} from '@angular/http';
+import {Response, Http, Headers, RequestOptions} from '@angular/http';
 import {Observable}     from 'rxjs/Observable';
 import 'rxjs/Rx';
 import 'rxjs/add/operator/map'
@@ -10,16 +10,11 @@ import 'rxjs/add/operator/map'
 
 export class Users {
 
-  // private connexionUrl = 'http://lomaytech.com/shifteo/connexion';
-  // private sendDataUrl = 'http://lomaytech.com/shifteo/send';
-  //
-  private connexionUrl = 'http://localhost:8000/shifteo/connexion';
-  private sendDataUrl = 'http://localhost:8000/shifteo/send';
+  private connexionUrl = 'http://0.0.0.0:8080/connexion';
+  private sendDataUrl = 'http://0.0.0.0:8080/send';
 
-  constructor(
-    public http:Http,
-    public authHttp:AuthHttp,
-  ) {
+  constructor(public http:Http,
+              public authHttp:AuthHttp,) {
   }
 
   /**
@@ -30,7 +25,13 @@ export class Users {
    * @returns {Observable<Response>}
    */
   getUser(user_login, user_password):Observable<any> {
-    return this.http.get(`${this.connexionUrl}/${user_login}/${user_password}`)
+    let body = "user_login=" + user_login + "&user_password=" + user_password;
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+
+    let options = new RequestOptions({headers: headers});
+
+    return this.http.post(`${this.connexionUrl}`, body, options)
       .map(this.extractData)
       .catch(this.handleError);
   }
