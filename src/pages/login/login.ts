@@ -32,17 +32,16 @@ export class LoginPage {
     }
 
     let loading = this.loadingCtrl.create({
-      content: 'Chargement ...'
+      content: 'Loading ...'
     });
 
     loading.present();
 
-    // Connexion serveur.
+    // Server authentication.
     this.users.getUser(user_login, user_password).subscribe(token => {
       loading.dismiss();
 
-      // Si on retrouve un utilisateur qui concorde on renvoie vers la page d'accueil.
-      // sinon on affiche un message d'alerte.
+      // If the user credentials are valid, the current user is redirected to the home page.
       if (token && token != 'undefined' && token != 'No user found') {
         localStorage.setItem('id_token', token.token);
         localStorage.setItem('user_login', user_login);

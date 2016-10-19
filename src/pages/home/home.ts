@@ -1,8 +1,6 @@
 import {Component} from '@angular/core';
 import {PopoverController, ActionSheetController, NavController} from 'ionic-angular';
-import {MyPopover} from '../../pages/popover/popover';
 import {LoginPage} from '../../pages/login/login';
-import {HistoryPage} from '../../pages/history/history';
 import {Users} from '../../providers/users/users';
 
 @Component({
@@ -12,20 +10,16 @@ import {Users} from '../../providers/users/users';
 })
 
 export class HomePage {
+  public user_login: string;
+
   constructor
   (public popoverCtrl:PopoverController,
    public actionSheetCtrl:ActionSheetController,
    public nav:NavController,
    public users:Users) {
-  }
 
-  presentPopover():void {
-    let popover = this.popoverCtrl.create(MyPopover);
-    popover.present();
-  }
+    this.user_login = localStorage.getItem('user_login');
 
-  goToHistory():void {
-    this.nav.push(HistoryPage);
   }
 
   presentActionSheet():void {
@@ -33,7 +27,7 @@ export class HomePage {
       title: '',
       buttons: [
         {
-          text: 'MAJ Catalogue Produits',
+          text: 'Get secured content',
           role: 'destructive',
           handler: () => {
             this.users.sendUserData().then(response => {
@@ -42,13 +36,7 @@ export class HomePage {
           }
         },
         {
-          text: 'Paramètres du téléphone',
-          handler: () => {
-            console.log('Paramètres du téléphone');
-          }
-        },
-        {
-          text: 'Déconnectez vous',
+          text: 'Log out',
           handler: () => {
             localStorage.setItem('id_token', '');
             this.nav.push(LoginPage);
