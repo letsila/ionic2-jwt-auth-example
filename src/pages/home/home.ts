@@ -19,7 +19,6 @@ export class HomePage {
    public users:Users) {
 
     this.user_login = localStorage.getItem('user_login');
-
   }
 
   presentActionSheet():void {
@@ -30,7 +29,7 @@ export class HomePage {
           text: 'Get secured content',
           role: 'destructive',
           handler: () => {
-            this.users.sendUserData().then(response => {
+            this.users.getSecuredData().subscribe(response => {
               console.log(response);
             })
           }
@@ -41,7 +40,8 @@ export class HomePage {
             localStorage.setItem('id_token', '');
             this.nav.push(LoginPage);
           }
-        }, {
+        },
+        {
           text: 'Cancel',
           role: 'cancel',
           handler: () => {

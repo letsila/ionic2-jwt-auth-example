@@ -11,14 +11,14 @@ import 'rxjs/add/operator/map'
 export class Users {
 
   private connexionUrl = 'http://0.0.0.0:8080/connexion';
-  private sendDataUrl = 'http://0.0.0.0:8080/send';
+  private getSecuredDataUrl = 'http://0.0.0.0:8080/secured-data';
 
   constructor(public http:Http,
               public authHttp:AuthHttp,) {
   }
 
   /**
-   * Connexion depuis le serveur.
+   * Authentication request to the server.
    *
    * @param user_login
    * @param user_password
@@ -37,16 +37,28 @@ export class Users {
   }
 
   /**
-   * Envoie sécurisée de données vers le serveur en utilisant JWT.
+   * Sending secure request to the server via the JWT.
    *
    * @returns {Observable<Response>}
    */
-  sendUserData():any {
-    return this.authHttp.get(this.sendDataUrl);
+  getSecuredData():any {
+    console.log(this.getSecuredDataUrl);
+    let jwt = localStorage.getItem('id_token');
+    let authHeader = new Headers();
+
+    if (jwt) {
+      authHeader.append('Authorization', jwt);
+    }
+
+    let options = new RequestOptions({headers: authHeader});
+
+    return this.http.get(this.getSecuredDataUrl, options)
+      .map(this.extractData)
+      .catch(this.handleError);
   }
 
   /**
-   * Extraction des données.
+   * Extracting data.
    *
    * @param res
    * @returns {any|{}}
@@ -57,7 +69,7 @@ export class Users {
   }
 
   /**
-   * Gestion des erreurs.
+   * Handling errors.
    *
    * @param error
    * @returns {ErrorObservable}

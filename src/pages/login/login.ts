@@ -55,8 +55,8 @@ export class LoginPage {
 
   alertConnexionError() {
     let alert = this.alertCtrl.create({
-      title: 'Erreur!',
-      subTitle: 'La connexion a échoué. Vérifiez vos identifiants et recommencez.',
+      title: 'Error!',
+      subTitle: 'Connection refused. Check your login/password.',
       buttons: ['OK']
     });
     alert.present();
