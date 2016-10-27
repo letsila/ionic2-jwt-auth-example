@@ -10,8 +10,7 @@ import 'rxjs/add/operator/map'
 
 export class Users {
 
-  private connexionUrl = 'http://0.0.0.0:8080/connexion';
-  private getSecuredDataUrl = 'http://0.0.0.0:8080/secured-data';
+  private baseUrl = 'http://0.0.0.0:8080';
 
   constructor(public http:Http,
               public authHttp:AuthHttp,) {
@@ -26,12 +25,13 @@ export class Users {
    */
   getUser(user_login, user_password):Observable<any> {
     let body = "user_login=" + user_login + "&user_password=" + user_password;
+
     let headers = new Headers();
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
     let options = new RequestOptions({headers: headers});
 
-    return this.http.post(`${this.connexionUrl}`, body, options)
+    return this.http.post(`${this.baseUrl}/authenticate`, body, options)
       .map(this.extractData)
       .catch(this.handleError);
   }
@@ -42,7 +42,6 @@ export class Users {
    * @returns {Observable<Response>}
    */
   getSecuredData():any {
-    console.log(this.getSecuredDataUrl);
     let jwt = localStorage.getItem('id_token');
     let authHeader = new Headers();
 
@@ -52,7 +51,7 @@ export class Users {
 
     let options = new RequestOptions({headers: authHeader});
 
-    return this.http.get(this.getSecuredDataUrl, options)
+    return this.http.get(`${this.baseUrl}/restricted`, options)
       .map(this.extractData)
       .catch(this.handleError);
   }
